@@ -1,3 +1,27 @@
+<!--トップページそのものに、ログイン時とそうじゃない時で表示変えるコードを初っ端に設置-->
+
+<!-- このlogged_inのイエスorノーで分岐させる-->
+<% if logged_in? %>
+<div class="row">
+    <aside class="col-sm-4">
+        <%= form_with(model: @micropost, local: true) do |f| %>
+        
+            <div class="form-group">
+                <%= f.text_area :content, class: 'form-control', rows: 5 %>
+            </div>
+            
+            <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+        <% end %>
+    </aside>
+    <div class="col-sm-8">
+        <%= render 'microposts/microposts', microposts: @microposts %>
+    </div>
+</div>
+
+
+
+<% else %>
+
 <div class="center jumbotron">
     <div class="text-center">
         <h1>Welcome to the Microposts</h1>
@@ -7,4 +31,5 @@
     </div>
     
 </div>
+<% end %>
 
