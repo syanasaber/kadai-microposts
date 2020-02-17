@@ -21,6 +21,8 @@
                     </li>
                     <li class="dropdown-divider"></li>
                     <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-item"><%= link_to 'My favorites', likes_user_path(current_user) %></li>
               </ul>
             </li>
                     
