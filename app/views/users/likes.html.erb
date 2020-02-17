@@ -1,23 +1,29 @@
+
+<!--ユーザーコントローラーから、@favoritesを受け取る-->
+<!-- それを使ってfavoritesに表示するのは、マイクロポスト一覧のはず -->
+<!-- _micropost（投稿一覧を表示するパーシャルに、@favorites → micropostsを受け渡す-->
+
+
+<!--ここの１＠userは現状詳細でみてるユーザー-->
 <div class="row">
   <aside class="col-sm-4">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">
-<%= @user.name %>
-</h3>
+            <%= @user.name %>　　
+        </h3>
       </div>
-      <div class="card-body">
-        <img class="rounded img-fluid" src="
-<%= gravatar_url(@user, { size: 500 }) %>
-" alt="">
-      </div>
+          <div class="card-body">
+            <img class="rounded img-fluid" src="
+                <%= gravatar_url(@user, { size: 500 }) %>
+            " alt="">
+          </div>
     </div>
-    
-<%= render 'relationships/follow_button', user: @user %>
-
+    <%= render 'relationships/follow_button', user: @user %>
   </aside>
-  
-  <div class="col-sm-8">
+    
+     <div class="col-sm-8">
+         <!-- 各一覧を表示するタブ表記-->
         <ul class="nav nav-tabs nav-justified mb-3">
             <li class="nav-item"><a href="<%= user_path(@user) %>" 
             class="nav-link<%= 'active' if current_page?(user_path(@user)) %>">
@@ -29,6 +35,8 @@
             <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link<%= 'active' if current_page?(likes_user_path(@user)) %>">
                 Favorites<span class="badge badge-secondary"><%= @count_favorites %></span></a></li>
         </ul>
-        <%= render 'users', users: @followers %>
+        
+        <%= render 'microposts/microposts', microposts: @favorites %>
     </div>
 </div>
+

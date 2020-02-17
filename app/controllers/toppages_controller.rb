@@ -1,4 +1,6 @@
 class ToppagesController < ApplicationController
+  
+  #ログイン判定、メソッドが一個だけやからbefore_actionじゃない
   def index
     if logged_in?
       @micropost = current_user.microposts.build  #ここでは引数を設定しない。viewでのformwith用の空インスタンス

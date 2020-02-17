@@ -8,7 +8,9 @@ class MicropostsController < ApplicationController
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
     else
-      @microposts = current_user.microposts.order(id: :desc).page(params[:page])
+      #保存に失敗した時は、　@micropostsに放り込んで、現状の投稿一覧だけを表示する。
+      #renderで、トップページindex表示するから、コントローラーの段階で作っておく
+      @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end

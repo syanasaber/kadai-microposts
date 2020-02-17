@@ -3,6 +3,7 @@
 <!-- このlogged_inのイエスorノーで分岐させる-->
 <% if logged_in? %>
 <div class="row">
+    <!-- 左４割は、投稿関連のレイアウト-->
     <aside class="col-sm-4">
         <%= form_with(model: @micropost, local: true) do |f| %>
         
@@ -11,8 +12,11 @@
             </div>
             
             <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+            
         <% end %>
     </aside>
+    
+    <!-- 右６割がツイート一覧関連のレイアウト -->
     <div class="col-sm-8">
         <%= render 'microposts/microposts', microposts: @microposts %>
     </div>
